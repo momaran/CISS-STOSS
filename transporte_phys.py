@@ -11,8 +11,9 @@ rc("font", family="serif")
 
 
 # Parámetros de la simulación
-N_electrones = 100  # Número total de electrones
-N_pasos = 50  # Número de iteraciones de Monte Carlo
+N_electrones = 1  # Número total de electrones
+N_pasos = 100  # Número de iteraciones de Monte Carlo
+N_moleculas = N_electrones
 D = 1    # Coeficiente de difusión (a determinar en unidades correctas)
 T = 300  # Temperatura en Kelvin
 V = 0.1  # Diferencia de potencial (Voltios)
@@ -68,7 +69,7 @@ for _ in range(N_pasos):
     historial.append(distribucion.copy())
 
 # Calcular corriente promedio en Amperios
-I = q * (electrones_drenados / (N_pasos* dt))
+I = q * N_moleculas * (electrones_drenados / (N_pasos* dt))
 print(f"Corriente medida: {I:.2e} A")
 
 # Crear animación
@@ -78,8 +79,22 @@ ax.set_ylim(0, max(map(max, historial)) * 1.1)
 ax.set_xlabel("Posición en el cable")
 ax.set_ylabel("Densidad de electrones")
 tiempo_text = ax.text(0.8 * N_posiciones, max(map(max, historial)) * 1.05, '', fontsize=12)
+# Ajustar el espacio para dejar sitio a la derecha
+plt.subplots_adjust(right=0.75)  # Mueve la gráfica a la izquierda
+
+# Definir texto con parámetros
+parametros_texto = (
+    rf"$T = {T}$ K" "\n"
+    rf"$D = {D}$" "\n"
+    rf"$N_{{\mathrm{{pasos}}}} = {N_pasos}$" "\n"
+    rf"$N_{{\mathrm{{electrones}}}} = {N_electrones}$"
+)
+
+# Mostrar el texto en la parte derecha
+plt.figtext(0.8, 0.5, parametros_texto, fontsize=12, va="center", bbox=dict(facecolor='white', alpha=0.8))
 ax.set_title("Evolución de la distribución electrónica")
 line, = ax.plot([], [], 'bo-', markersize=4)
+
 
 def actualizar(frame):
     tiempo_text.set_text(f'N_steps = {frame}')
