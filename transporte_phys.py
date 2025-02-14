@@ -11,10 +11,10 @@ rc("font", family="serif")
 
 
 # Parámetros de la simulación
-N_electrones = 1  # Número total de electrones
+N_electrones = 100  # Número total de electrones
 N_pasos = 100  # Número de iteraciones de Monte Carlo
 N_moleculas = N_electrones
-D = 1    # Coeficiente de difusión (a determinar en unidades correctas)
+D = 0.5    # Coeficiente de difusión (a determinar en unidades correctas)
 T = 300  # Temperatura en Kelvin
 V = 0.1  # Diferencia de potencial (Voltios)
 kB = 8.617e-5  # Constante de Boltzmann en eV/K
@@ -27,9 +27,8 @@ dx = total_length / N_posiciones  # Longitud de un paso en metros
 dt = 1e-9/(6*D*N_posiciones)  # Paso de tiempo en segundos
 
 # Inicialización: electrones concentrados en un extremo
-# distribucion = np.zeros(N_posiciones)
-# distribucion[:N_posiciones//10] = N_electrones / (N_posiciones//10)
-distribucion = np.full(N_posiciones, N_electrones / N_posiciones)
+distribucion = np.zeros(N_posiciones)
+distribucion[:N_posiciones] = N_electrones / (N_posiciones)
 
 # Simulación de difusión con temperatura y potencial
 electrones_drenados = 0  # Contador de electrones que llegan al extremo derecho
@@ -84,6 +83,7 @@ plt.subplots_adjust(right=0.75)  # Mueve la gráfica a la izquierda
 
 # Definir texto con parámetros
 parametros_texto = (
+    rf"$V = {V}$ V" "\n"
     rf"$T = {T}$ K" "\n"
     rf"$D = {D}$" "\n"
     rf"$N_{{\mathrm{{pasos}}}} = {N_pasos}$" "\n"
