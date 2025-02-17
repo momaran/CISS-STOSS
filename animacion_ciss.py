@@ -1,11 +1,11 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
+from matplotlib import rc
 import os
 import time
 
-# Configuración de estilo LaTeX para las gráficas
-from matplotlib import rc
+# Para las gráficas de LaTex
 rc("text", usetex=True)
 rc("font", family="serif")
 
