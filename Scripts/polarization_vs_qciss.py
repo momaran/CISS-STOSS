@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from funciones.simulacion import simular
 
 # Valores de q_CISS utilizados en la simulación
-q_CISS_values = np.linspace(0, 1, 30)
+q_CISS_values = np.linspace(0, 1, 100)
 
 # Lista para almacenar la polarización final de cada simulación
 polarizacion_final = []
