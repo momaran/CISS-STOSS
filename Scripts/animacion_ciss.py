@@ -11,7 +11,7 @@ rc("font", family="serif")
 
 # Parámetros de la simulación
 N_electrones = 500  # Número total de electrones
-N_pasos = 200  # Número de iteraciones de Monte Carlo
+N_pasos = 100  # Número de iteraciones de Monte Carlo
 N_moleculas = N_electrones
 D = 1    # Coeficiente de difusión
 T = 300  # Temperatura en Kelvin
