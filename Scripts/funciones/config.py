@@ -7,8 +7,8 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 # Parámetros de la simulación
 N_electrones = 1000  # Número total de electrones
-N_pasos = 5000  # Número de iteraciones de Monte Carlo
-D = 0.9    # Coeficiente de difusión
+N_pasos = 200  # Número de iteraciones de Monte Carlo
+D = 1    # Coeficiente de difusión
 T = 300  # Temperatura en Kelvin
 V = 0.1  # Diferencia de potencial (Voltios)
 kB = 8.617e-5  # Constante de Boltzmann en eV/K
